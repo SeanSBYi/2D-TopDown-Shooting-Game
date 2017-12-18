@@ -4,8 +4,15 @@ namespace Assets.Scripts
 {
     public class MovePlayer : MonoBehaviour
     {
+        // PRIVATE VALUABLE
+        private bool isPowerUp;
+        private int powerUpCounter;
+        private int powerUpTime;
 
+        // PUBLIC VALUABLE
         public GameObject Bullet; //set the public field of Game Object in the inspector of player
+        public GameObject BulletL;
+        public GameObject BulletR;
 
         public float BulletVelocity = 1000.0f; //set the public field of initializing bullet's velocity.  
 
@@ -13,11 +20,24 @@ namespace Assets.Scripts
         void Start()
         {
             //GetComponent<Rigidbody2D>().isKinematic = true;
+            isPowerUp = false;
+            powerUpTime = 500;
         }
 
         // Update is called once per frame
         void Update()
         {
+            powerUpCounter++;
+            if (powerUpCounter > powerUpTime)
+            {
+                powerUpCounter++;
+            }
+
+            if(isPowerUp == true)
+            {
+                isPowerUp = false;
+            }
+            
             PlayerMove();
             BulletInstance();
         }
@@ -34,6 +54,17 @@ namespace Assets.Scripts
                 //GetComponent<AudioSource>().clip = FireSound;
                 //GetComponent<AudioSource>().Play();
 
+                if(isPowerUp)
+                {
+                    GameObject bL = Instantiate(BulletL, transform.position + transform.up * 1.5f, Quaternion.identity);
+                    GameObject bR = Instantiate(BulletR, transform.position + transform.up * 1.5f, Quaternion.identity);
+
+                    Vector3 dir = Quaternion.AngleAxis(15.0f, Vector3.forward) * Vector3.left;
+                    bL.GetComponent<Rigidbody2D>().AddForce(dir * BulletVelocity);
+
+                    dir = Quaternion.AngleAxis(15.0f, Vector3.forward) * Vector3.right;
+                    bR.GetComponent<Rigidbody2D>().AddForce(dir * BulletVelocity);
+                }
             }
         }
         /// <summary>
@@ -70,6 +101,11 @@ namespace Assets.Scripts
             viewPortPosition.x = Mathf.Clamp(viewPortPosition.x, 0 + deltaX, 1 - deltaX);//2
             viewPortPosition.y = Mathf.Clamp(viewPortPosition.y, 0 + deltaY, 1 - deltaY);//3
             transform.position = Camera.main.ViewportToWorldPoint(viewPortPosition);//4
+        }
+
+        public void SetPowerUp()
+        {
+            isPowerUp = true;
         }
     }
 }

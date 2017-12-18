@@ -53,6 +53,11 @@ namespace Assets.Scripts
             ReduceLive();
         }
 
+        public void RecoverPlayer()
+        {
+            GameStatus.GetInstance().NumLives++;
+        }
+
         private void ReduceLive()
         {
             GameStatus.GetInstance().NumLives--;
@@ -67,11 +72,12 @@ namespace Assets.Scripts
                 Invoke("LoadLose", 2);
             }
         }
-
+        
         private void LoadLose()
         {
             SceneManager.LoadScene("Lose");
         }
+
         private void LoadScene()
         {
             SceneManager.LoadScene(SceneManager.GetActiveScene().name);

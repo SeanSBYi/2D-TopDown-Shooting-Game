@@ -8,16 +8,17 @@ namespace Assets.Scripts
         /// Health will be used to determine the health of each target.
         /// </summary>
         public int Health;
+
         /// <summary>
         /// Type is used to set different types of targets; each of these will have different levels of health.
         /// </summary>
         public int Type;
+
         /// <summary>
         /// TargetBoulder will be used as a type for our moving targets. Both static and public; this means that it can be accessed from 
         /// outside its class.
         /// </summary>
         public static int TargetBoulder = 0;
-
        
         private int _score;
         public AudioClip HitSound;
@@ -95,6 +96,11 @@ namespace Assets.Scripts
         private void GetScore()
         {
             GameStatus.GetInstance().Score += _score;
+        }
+        
+        public void SetManualScore(int _manualScore)
+        {
+            GameStatus.GetInstance().Score += _manualScore;
         }
     }
 }
