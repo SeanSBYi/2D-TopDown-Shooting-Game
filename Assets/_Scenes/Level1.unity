@@ -577,8 +577,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   NewEnemyObject: {fileID: 1379858885204294, guid: 26f0f1a7dc1320040a8ca10208684259,
     type: 2}
-  NewItemObject: {fileID: 1015846320097092, guid: c75d8f6c531ee6545b530744c9f006e6,
-    type: 2}
+  NewItemObjects:
+  - {fileID: 1541321943381284, guid: a97cb9aad40d26442b238cb67276bf07, type: 2}
+  - {fileID: 1400778032337758, guid: 16df0f95d4df8aa4491eff8e7326d132, type: 2}
+  - {fileID: 1174521642722274, guid: c8fd67b6a931bca4ea98589ad7b2372b, type: 2}
 --- !u!1 &1028891517
 GameObject:
   m_ObjectHideFlags: 0
