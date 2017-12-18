@@ -9,6 +9,11 @@ namespace Assets.Scripts
         // Update is called once per frame
         void Update()
         {
+            if(GameStatus.GetInstance() == null)
+            {
+                return;
+            }
+
             GetComponent<Text>().text = "Score: " + GameStatus.GetInstance().Score
                 + " Lives: " + GameStatus.GetInstance().NumLives + " Level: "
                 + GameStatus.GetInstance().PlayerLevel;

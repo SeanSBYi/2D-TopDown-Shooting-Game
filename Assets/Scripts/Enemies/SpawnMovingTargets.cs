@@ -10,7 +10,7 @@ namespace Assets.Scripts
         
         // PUBLIC VALUABLE
         public GameObject NewEnemyObject;
-        public GameObject NewItemObject;
+        public GameObject[] NewItemObjects;
 
         void Update()
         {
@@ -40,7 +40,8 @@ namespace Assets.Scripts
 
                 if(itemTimer >= 5.0f)
                 {
-                    GameObject t = Instantiate(NewItemObject, newPositon, Quaternion.identity);
+                    GameObject NowItemGO = NewItemObjects[Random.Range(0, 2)];
+                    GameObject t = Instantiate(NowItemGO, newPositon, Quaternion.identity);
                     Vector3 viewPortPosition = Camera.main.WorldToViewportPoint(t.transform.position);//1
                     Vector3 viewPortXDelta = Camera.main.WorldToViewportPoint(t.transform.position + Vector3.left / 2);
                     float deltaX = viewPortPosition.x - viewPortXDelta.x;
