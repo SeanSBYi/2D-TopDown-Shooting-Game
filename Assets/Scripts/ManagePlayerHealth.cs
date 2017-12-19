@@ -60,6 +60,11 @@ namespace Assets.Scripts
 
         private void ReduceLive()
         {
+            // Camera Effect
+            GameObject go = GameObject.FindGameObjectWithTag("MainCamera");
+            CameraController cc = go.GetComponent<CameraController>();
+            cc.EnableShake();
+
             GameStatus.GetInstance().NumLives--;
 
             int live = GameStatus.GetInstance().NumLives;

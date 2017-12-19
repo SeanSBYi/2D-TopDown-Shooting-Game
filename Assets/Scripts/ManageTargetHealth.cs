@@ -35,8 +35,7 @@ namespace Assets.Scripts
             {
                 Health = 30;
                 _score = 30;
-            }
-           
+            }           
         }
 
         void Update()
